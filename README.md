@@ -1,8 +1,8 @@
 # <p align="center">PHYS 141 - Computational Physics I - Probabilistic Models and Simulations<p>
 
-### <center>Midterm Project - Team Cartwheel A</center>
+### <p align="center">Midterm Project - Team Cartwheel A</p>
 
-**<center>Team Members:** Girish Krishnan, Gokul Swaminathan, Ishaan Kavoori</center>
+**<p align="center">Team Members:** Girish Krishnan, Gokul Swaminathan, Ishaan Kavoori</p>
 
 #### Usage
 
