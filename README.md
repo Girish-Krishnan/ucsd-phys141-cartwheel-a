@@ -1,4 +1,4 @@
-#<center> PHYS 141 - Computational Physics I - Probabilistic Models and Simulations</center>
+# <center> PHYS 141 - Computational Physics I - Probabilistic Models and Simulations</center>
 
 ### <center>Midterm Project - Team Cartwheel A</center>
 
