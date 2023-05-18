@@ -65,7 +65,7 @@ int main() {
 
     // Output the particle positions and velocities to a file
     FILE *outfile;
-    outfile = fopen("targetgalaxy.dat", "w");
+    outfile = fopen("disk_initial_conditions.dat", "w");
     for (i=0; i<NUM_PARTICLES; i++) {
         fprintf(outfile, "%lf %lf %lf %lf %lf %lf %lf\n", xpos[i], ypos[i], zpos[i], xvel[i], yvel[i], zvel[i], mass[i]);
     }
