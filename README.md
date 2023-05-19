@@ -16,4 +16,3 @@
 * Softening Parameter
 * von Neumann rejection
 * Simple scaling, G = M = r0 = 1
-* 
