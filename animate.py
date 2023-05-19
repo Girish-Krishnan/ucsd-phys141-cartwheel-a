@@ -2,9 +2,17 @@ import matplotlib.pyplot as plt
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.animation import FuncAnimation
+import sys
+
+if len(sys.argv) != 3:
+    print('Usage: python animate.py <data_log_filename> <output video filename>')
+    sys.exit(1)
+
+filename = sys.argv[1]
+output_filename = sys.argv[2]
 
 # Read the .dat file
-data = np.genfromtxt('data_log.dat')
+data = np.genfromtxt(filename)
 
 # Transpose the data array to access columns as separate lists
 columns = (data.T)[:7,:].tolist()
@@ -55,7 +63,7 @@ ax = fig.add_subplot(111, projection='3d')
 animation = FuncAnimation(fig, update, frames=len(x[0]), interval=50)
 
 # Save the animation as a video
-animation.save('animation.mp4', writer='ffmpeg')
+animation.save(output_filename, writer='ffmpeg')
 
 # Show the animation
 #plt.show()

@@ -3,9 +3,17 @@ import matplotlib.pyplot as plt
 import numpy as np
 # 3d plotting
 from mpl_toolkits.mplot3d import Axes3D
+import sys
+
+if len(sys.argv) != 3:
+    print('Usage: python plotting_initial_disk.py <disk_data_filename> <output_image_filename>')
+    sys.exit(1)
+
+filename = sys.argv[1]
+output_filename = sys.argv[2]
 
 # Read data from targetgalaxy.dat and store in arrays
-data = np.loadtxt('targetgalaxy.dat')
+data = np.loadtxt(filename)
 x = data[:,0]
 y = data[:,1]
 z = data[:,2]
@@ -22,6 +30,6 @@ ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
 plt.title('3D Plot of Target Galaxy')
-plt.show()
 
-
+# Save the figure as a .png file
+plt.savefig(output_filename)

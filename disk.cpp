@@ -16,6 +16,8 @@ double mass_density(double r, double a) {
 
 int main(int argc, char *argv[]) {
 
+    printf("Generating disk galaxy model...\n");
+
     // Read the setup file
     if (argc != 3) {
         printf("Usage: ./disk <setup_file> <output_file>\n");
@@ -39,7 +41,16 @@ int main(int argc, char *argv[]) {
 
     // Read NUM_RINGS, NUM_PARTICLES_PER_RING, G, Scale_length
     fgets(buffer, MAX_BUFFER_SIZE, file);
+    // Clear buffer and run fgets again
+    memset(buffer, 0, MAX_BUFFER_SIZE);
+    fgets(buffer, MAX_BUFFER_SIZE, file);
     sscanf(buffer, "%d %d %lf %lf", &numRings, &numParticlesPerRing, &G, &scaleLength);
+
+    // print the parameters to the screen
+    printf("numRings = %d\n", numRings);
+    printf("numParticlesPerRing = %d\n", numParticlesPerRing);
+    printf("G = %lf\n", G);
+    printf("scaleLength = %lf\n", scaleLength);
 
     // Allocate memory for ringRadii and ringWidths arrays
     ringRadii = (double *)malloc(numRings * sizeof(double));
@@ -47,18 +58,32 @@ int main(int argc, char *argv[]) {
 
     // Read ring radii
     fgets(buffer, MAX_BUFFER_SIZE, file);
+    memset(buffer, 0, MAX_BUFFER_SIZE);
+    fgets(buffer, MAX_BUFFER_SIZE, file);
     char *token = strtok(buffer, " ");
     for (int i = 0; i < numRings; i++) {
         ringRadii[i] = atof(token);
         token = strtok(NULL, " ");
     }
 
+    printf("ringRadii = ");
+    for (int i = 0; i < numRings; i++) {
+        printf("%lf ", ringRadii[i]);
+    }
+
     // Read ring widths
+    fgets(buffer, MAX_BUFFER_SIZE, file);
+    memset(buffer, 0, MAX_BUFFER_SIZE);
     fgets(buffer, MAX_BUFFER_SIZE, file);
     token = strtok(buffer, " ");
     for (int i = 0; i < numRings; i++) {
         ringWidths[i] = atof(token);
         token = strtok(NULL, " ");
+    }
+
+    printf("\nringWidths = ");
+    for (int i = 0; i < numRings; i++) {
+        printf("%lf ", ringWidths[i]);
     }
 
     // Close the file

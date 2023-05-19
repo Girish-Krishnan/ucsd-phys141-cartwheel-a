@@ -1,4 +1,4 @@
-# <p align="center">PHYS 141 - Computational Physics I - Probabilistic Models and Simulations<p>
+# <p align="center">PHYS 141/241 - Computational Physics I - Probabilistic Models and Simulations<p>
 
 ### <p align="center">Midterm Project - Team Cartwheel A</p>
 
@@ -14,6 +14,5 @@
 
 #### Remaining Work
 
-* Softening Parameter
 * von Neumann rejection
 * Simple scaling, G = M = r0 = 1

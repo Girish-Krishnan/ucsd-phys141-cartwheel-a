@@ -67,6 +67,33 @@ int main(int argc, char *argv[]){
         }
     }
 
+    fclose(file);
+
+    // Print data
+    printf("Host nucleus:\n");
+    printf("m = %lf\n", m_nucleus);
+    printf("x = %lf ", x_nucleus);
+    printf("y = %lf ", y_nucleus);
+    printf("z = %lf\n", z_nucleus);
+    printf("vx = %lf ", vx_nucleus);
+    printf("vy = %lf ", vy_nucleus);
+    printf("vz = %lf\n", vz_nucleus);
+
+    printf("Intruder nucleus:\n");
+    printf("m = %lf\n", m_intruder);
+    printf("x = %lf ", x_intruder);
+    printf("y = %lf ", y_intruder);
+    printf("z = %lf\n", z_intruder);
+    printf("vx = %lf ", vx_intruder);
+    printf("vy = %lf ", vy_intruder);
+    printf("vz = %lf\n", vz_intruder);
+
+    printf("Integration parameters:\n");
+    printf("nout = %d ", nout);
+    printf("dt = %lf ", dt);
+    printf("mstep = %d ", mstep);
+    printf("soft = %lf\n", soft);
+
     // disk particle data
     FILE *disk_file = fopen(disk_init_cond_file, "r");
 
@@ -81,7 +108,10 @@ int main(int argc, char *argv[]){
         }
     }
 
-    int n = num_lines - 1;  // number of points in disk
+    int n = num_lines;  // number of points in disk
+
+    printf("Number of points in disk: %d\n", n);
+
     double m[n];
     double x[n], y[n], z[n];
     double vx[n], vy[n], vz[n];
