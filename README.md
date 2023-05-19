@@ -10,3 +10,10 @@
 * **plotting_initial_disk.py** - to visualize the point distribution in the disk.
 *  **simulation.cpp** - to run the Cartwheel galaxy collision simulation (using Leapfrog integration)
 *  **animate.py** - to visualize the Cartwheel simulation.
+
+#### Remaining Work
+
+* Softening Parameter
+* von Neumann rejection
+* Simple scaling, G = M = r0 = 1
+* 

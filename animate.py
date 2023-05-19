@@ -40,6 +40,8 @@ def update(frame):
     ax.set_zlabel('Z')
     ax.scatter(x_nucleus[frame], y_nucleus[frame], z_nucleus[frame], color='red', s=20)  # Plot the host galaxy nucleus at the current frame
     ax.scatter(x_intruder[frame], y_intruder[frame], z_intruder[frame], color='blue', s=20)  # Plot the host galaxy nucleus at the current frame
+    # Set title
+    ax.set_title('Time: {:.2f} Gyr'.format(time[frame]))
     
     # Plot the points in the disk at the current frame
     for i in range(len(x)):
@@ -50,10 +52,10 @@ fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 
 # Create the animation
-animation = FuncAnimation(fig, update, frames=len(x[0]), interval=200)
+animation = FuncAnimation(fig, update, frames=len(x[0]), interval=50)
 
 # Save the animation as a video
 animation.save('animation.mp4', writer='ffmpeg')
 
 # Show the animation
-plt.show()
+#plt.show()
