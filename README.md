@@ -10,6 +10,7 @@
 * **plotting_initial_disk.py** - to visualize the point distribution in the disk.
 *  **simulation.cpp** - to run the Cartwheel galaxy collision simulation (using Leapfrog integration)
 *  **animate.py** - to visualize the Cartwheel simulation.
+*  **midterm.ipynb** - a Jupyter notebook walking through all the steps to run the code.
 
 #### Remaining Work
 

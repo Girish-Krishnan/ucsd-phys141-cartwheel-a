@@ -1,0 +1,11 @@
+G
+1.0
+Host nucleus
+Mass X Y Z Vx Vy Vz
+10.0 0.0 0.0 0.0 0.0 0.0 0.0
+Intruder nucleus
+Mass X Y Z Vx Vy Vz
+10.0 0.0 0.0 10.0 0.0 0.0 -10.0
+Integration parameters
+nout dt mstep soft
+2 0.01 500 0.1
