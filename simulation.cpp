@@ -108,6 +108,9 @@ int main(int argc, char *argv[]){
         }
     }
 
+    // reset file pointer to beginning of file
+    fseek(disk_file, 0, SEEK_SET);
+
     int n = num_lines;  // number of points in disk
 
     printf("Number of points in disk: %d\n", n);
@@ -122,7 +125,6 @@ int main(int argc, char *argv[]){
                   &vx[count], &vy[count], &vz[count], &m[count]) == 7) {
         count++;
     }
-
 
     fclose(disk_file);
 
@@ -276,8 +278,6 @@ void accel(double m_nucleus, double *ax_nucleus, double *ay_nucleus, double *az_
         az[i] = (-G * m_nucleus * (z[i] - z_nucleus)/pow(r_to_nucleus + soft, 3)) + (-G * m_intruder * (z[i] - z_intruder)/pow(r_to_intruder + soft, 3));
     }
 }
-
-
 
 
 double distance(double x1, double y1, double z1, double x2, double y2, double z2){
