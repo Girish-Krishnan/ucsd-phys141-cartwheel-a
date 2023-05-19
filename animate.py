@@ -3,16 +3,30 @@ import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.animation import FuncAnimation
 
-f = open('somefilename')
-content = f.readlines()
-f.close()
+# Read the .dat file
+data = np.genfromtxt('data_log.dat')
 
-x_nucleus, y_nucleus, z_nucleus = []    # position of host nucleus
-x_intruder, y_intruder, z_intruder = [] # position of intruding nucleus
-x, y, z = []    # positions of points in disk
+# Transpose the data array to access columns as separate lists
+columns = (data.T)[:7,:].tolist()
+point_positions = (data.T)[7:,:].tolist()
+
+# Assign the columns to their respective variables
+time = columns[0]
+x_nucleus = columns[1]
+y_nucleus = columns[2]
+z_nucleus = columns[3]    # position of host nucleus
+x_intruder = columns[4]
+y_intruder = columns[5]
+z_intruder = columns[6] # position of intruding nucleus
+
+# Let x be a list of lists containing the x positions of the points in the disk at each time step
+x = point_positions[0::3]
+y = point_positions[1::3]
+z = point_positions[2::3]
+    
 
 '''
-read in the positional values from the file Somehow:tm:
+read in the positional values from the file
 '''
 
 # Function to update the plot for each animation frame
@@ -26,19 +40,20 @@ def update(frame):
     ax.set_zlabel('Z')
     ax.scatter(x_nucleus[frame], y_nucleus[frame], z_nucleus[frame], color='red', s=20)  # Plot the host galaxy nucleus at the current frame
     ax.scatter(x_intruder[frame], y_intruder[frame], z_intruder[frame], color='blue', s=20)  # Plot the host galaxy nucleus at the current frame
-    # plot the disk points at the current frame
-    for xpoint, ypoint, zpoint in x, y, z:
-        ax.scatter(xpoint[frame], ypoint[frame], zpoint[frame], color='red', s=5)
+    
+    # Plot the points in the disk at the current frame
+    for i in range(len(x)):
+        ax.scatter(x[i][frame], y[i][frame], z[i][frame], color='black', s=1)
 
 # Create the figure and 3D axes
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 
 # Create the animation
-animation = FuncAnimation(fig, update, frames=len(x), interval=200)
+animation = FuncAnimation(fig, update, frames=len(x[0]), interval=200)
 
 # Save the animation as a video
-animation.save('galaxies_animation.mp4', writer='ffmpeg')
+animation.save('animation.mp4', writer='ffmpeg')
 
 # Show the animation
 plt.show()
