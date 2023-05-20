@@ -57,6 +57,9 @@ def update(frame):
     for i in range(len(x)):
         ax.scatter(x[i][frame], y[i][frame], z[i][frame], color='black', s=1)
 
+    # Save frame as image
+    plt.savefig('animation_frames/frame_{:04d}.png'.format(frame))
+
 # Create the figure and 3D axes
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
