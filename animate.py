@@ -1,3 +1,5 @@
+import matplotlib
+matplotlib.use('Agg')  # Use the Agg backend to save animations without having a window appear
 import matplotlib.pyplot as plt
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
@@ -49,7 +51,7 @@ def update(frame):
     ax.scatter(x_nucleus[frame], y_nucleus[frame], z_nucleus[frame], color='red', s=20)  # Plot the host galaxy nucleus at the current frame
     ax.scatter(x_intruder[frame], y_intruder[frame], z_intruder[frame], color='blue', s=20)  # Plot the host galaxy nucleus at the current frame
     # Set title
-    ax.set_title('Time: {:.2f} Gyr'.format(time[frame]))
+    ax.set_title('Time: {:.2f}'.format(time[frame]))
     
     # Plot the points in the disk at the current frame
     for i in range(len(x)):
@@ -58,6 +60,7 @@ def update(frame):
 # Create the figure and 3D axes
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
+# ax.view_init(elev=30, azim=45)  # Set elevation to 30 degrees and azimuth to 45 degrees
 
 # Create the animation
 animation = FuncAnimation(fig, update, frames=len(x[0]), interval=50)

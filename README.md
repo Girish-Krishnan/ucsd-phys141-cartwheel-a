@@ -11,8 +11,3 @@
 *  **simulation.cpp** - to run the Cartwheel galaxy collision simulation (using Leapfrog integration)
 *  **animate.py** - to visualize the Cartwheel simulation.
 *  **midterm.ipynb** - a Jupyter notebook walking through all the steps to run the code.
-
-#### Remaining Work
-
-* von Neumann rejection
-* Simple scaling, G = M = r0 = 1
