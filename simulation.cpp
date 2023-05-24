@@ -126,6 +126,21 @@ int main(int argc, char *argv[]){
         count++;
     }
 
+    // print count
+    printf("Number of points read: %d\n", count);
+
+    // print the first 5 points
+    printf("First 5 points:\n");
+    for(int i=0; i<5; i++){
+        printf("x = %lf ", x[i]);
+        printf("y = %lf ", y[i]);
+        printf("z = %lf ", z[i]);
+        printf("vx = %lf ", vx[i]);
+        printf("vy = %lf ", vy[i]);
+        printf("vz = %lf ", vz[i]);
+        printf("m = %lf\n", m[i]);
+    }
+
     fclose(disk_file);
 
     // log positions to plot later
@@ -229,7 +244,7 @@ void leapstep(double m_nucleus, double *x_nucleus, double *y_nucleus, double *z_
     }
 
     // kick
-    accel(m_nucleus, &ax_nucleus, &ay_nucleus, &ax_nucleus, *x_nucleus, *y_nucleus, *z_nucleus,
+    accel(m_nucleus, &ax_nucleus, &ay_nucleus, &az_nucleus, *x_nucleus, *y_nucleus, *z_nucleus,
           m_intruder, &ax_intruder, &ay_intruder, &az_intruder, *x_intruder, *y_intruder, *z_intruder,
           m, ax, ay, az, x, y, z, n, soft);
 
@@ -260,22 +275,22 @@ void accel(double m_nucleus, double *ax_nucleus, double *ay_nucleus, double *az_
 {
     // calc acceleration of host nucleus (only calculates force between it and the intruder nucleus, not the points in the disk)
     double r = distance(x_nucleus, y_nucleus, z_nucleus, x_intruder, y_intruder, z_intruder);
-    *ax_nucleus = -G * m_intruder * (x_nucleus - x_intruder)/pow(r + soft, 3);
-    *ay_nucleus = -G * m_intruder * (y_nucleus - y_intruder)/pow(r + soft, 3);
-    *az_nucleus = -G * m_intruder * (z_nucleus - z_intruder)/pow(r + soft, 3);
+    *ax_nucleus = -G * m_intruder * (x_nucleus - x_intruder)/pow(r + soft*soft, 3);
+    *ay_nucleus = -G * m_intruder * (y_nucleus - y_intruder)/pow(r + soft*soft, 3);
+    *az_nucleus = -G * m_intruder * (z_nucleus - z_intruder)/pow(r + soft*soft, 3);
 
     // calc acceleration of intruder nucleus (only calculates force between it and the host nucleus, not the points in the disk)
-    *ax_intruder = -G * m_nucleus * (x_intruder - x_nucleus)/pow(r + soft, 3);
-    *ay_intruder = -G * m_nucleus * (y_intruder - y_nucleus)/pow(r + soft, 3);
-    *az_intruder = -G * m_nucleus * (z_intruder - z_nucleus)/pow(r + soft, 3);
+    *ax_intruder = -G * m_nucleus * (x_intruder - x_nucleus)/pow(r + soft*soft, 3);
+    *ay_intruder = -G * m_nucleus * (y_intruder - y_nucleus)/pow(r + soft*soft, 3);
+    *az_intruder = -G * m_nucleus * (z_intruder - z_nucleus)/pow(r + soft*soft, 3);
 
     // calc acceleration of disk particles
     for(int i = 0; i < n; i++){
         double r_to_nucleus = distance(x[i], y[i], z[i], x_nucleus, y_nucleus, z_nucleus);
         double r_to_intruder = distance(x[i], y[i], z[i], x_intruder, y_intruder, z_intruder);
-        ax[i] = (-G * m_nucleus * (x[i] - x_nucleus)/pow(r_to_nucleus + soft, 3)) + (-G * m_intruder * (x[i] - x_intruder)/pow(r_to_intruder + soft, 3));
-        ay[i] = (-G * m_nucleus * (y[i] - y_nucleus)/pow(r_to_nucleus + soft, 3)) + (-G * m_intruder * (y[i] - y_intruder)/pow(r_to_intruder + soft, 3));
-        az[i] = (-G * m_nucleus * (z[i] - z_nucleus)/pow(r_to_nucleus + soft, 3)) + (-G * m_intruder * (z[i] - z_intruder)/pow(r_to_intruder + soft, 3));
+        ax[i] = (-G * m_nucleus * (x[i] - x_nucleus)/pow(r_to_nucleus + soft*soft, 3)) + (-G * m_intruder * (x[i] - x_intruder)/pow(r_to_intruder + soft*soft, 3));
+        ay[i] = (-G * m_nucleus * (y[i] - y_nucleus)/pow(r_to_nucleus + soft*soft, 3)) + (-G * m_intruder * (y[i] - y_intruder)/pow(r_to_intruder + soft*soft, 3));
+        az[i] = (-G * m_nucleus * (z[i] - z_nucleus)/pow(r_to_nucleus + soft*soft, 3)) + (-G * m_intruder * (z[i] - z_intruder)/pow(r_to_intruder + soft*soft, 3));
     }
 }
 

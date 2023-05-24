@@ -116,9 +116,8 @@ int main(int argc, char *argv[]) {
 
             // Generate a velocity within the ring
             double v_mag = sqrt(G*particle_mass/r);
-            double v_theta = theta + M_PI/2;
-            xvel[np] = -v_mag*sin(v_theta);
-            yvel[np] = v_mag*cos(v_theta);
+            xvel[np] = -v_mag*sin(theta);
+            yvel[np] = v_mag*cos(theta);
             zvel[np] = 0.0;
 
             // Assign the mass of the particle

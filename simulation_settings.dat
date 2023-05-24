@@ -2,10 +2,10 @@ G
 1.0
 Host nucleus
 Mass X Y Z Vx Vy Vz
-0.1 0.0 0.0 0.0 0.0 0.0 0.0
+1.0 0.0 0.0 0.0 0.0 0.0 0.0
 Intruder nucleus
 Mass X Y Z Vx Vy Vz
-0.06 0.0 0.0 10.0 0.0 0.0 -2.0
+0.5 0.0 0.0 10.0 0.0 0.0 -2.0
 Integration parameters
 nout dt mstep soft
-2 0.1 500 0.09
+2 0.1 500 5

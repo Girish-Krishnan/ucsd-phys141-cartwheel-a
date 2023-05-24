@@ -58,12 +58,12 @@ def update(frame):
         ax.scatter(x[i][frame], y[i][frame], z[i][frame], color='black', s=1)
 
     # Save frame as image
-    plt.savefig('animation_frames/frame_{:04d}.png'.format(frame))
+    # plt.savefig('animation_frames/frame_{:04d}.png'.format(frame))
 
 # Create the figure and 3D axes
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
-# ax.view_init(elev=30, azim=45)  # Set elevation to 30 degrees and azimuth to 45 degrees
+# ax.view_init(elev=90, azim=0)  # Set elevation to 30 degrees and azimuth to 45 degrees
 
 # Create the animation
 animation = FuncAnimation(fig, update, frames=len(x[0]), interval=50)
