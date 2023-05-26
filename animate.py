@@ -1,8 +1,6 @@
 import matplotlib
-matplotlib.use('Agg')  # Use the Agg backend to save animations without having a window appear
 import matplotlib.pyplot as plt
 import numpy as np
-from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.animation import FuncAnimation
 import sys
 
@@ -42,9 +40,9 @@ read in the positional values from the file
 # Function to update the plot for each animation frame
 def update(frame):
     ax.clear()
-    ax.set_xlim(-20, 20)  # Adjust the limits according to your data
-    ax.set_ylim(-20, 20)
-    ax.set_zlim(-20, 20)
+    ax.set_xlim(-30, 30)  # Adjust the limits according to your data
+    ax.set_ylim(-30, 30)
+    ax.set_zlim(-30, 30)
     ax.set_xlabel('X')
     ax.set_ylabel('Y')
     ax.set_zlabel('Z')
@@ -63,7 +61,7 @@ def update(frame):
 # Create the figure and 3D axes
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
-# ax.view_init(elev=90, azim=0)  # Set elevation to 30 degrees and azimuth to 45 degrees
+ax.view_init(elev=0, azim=90)  # Set elevation and azimuth angles
 
 # Create the animation
 animation = FuncAnimation(fig, update, frames=len(x[0]), interval=50)

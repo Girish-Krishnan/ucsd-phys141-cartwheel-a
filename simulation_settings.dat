@@ -5,7 +5,7 @@ Mass X Y Z Vx Vy Vz
 1.0 0.0 0.0 0.0 0.0 0.0 0.0
 Intruder nucleus
 Mass X Y Z Vx Vy Vz
-0.5 0.0 0.0 10.0 0.0 0.0 -2.0
+0.667 0.0 0.0 10.0 0.0 0.0 -0.447
 Integration parameters
 nout dt mstep soft
-2 0.1 500 5
+2 0.1 1200 1.3

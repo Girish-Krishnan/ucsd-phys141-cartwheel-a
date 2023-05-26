@@ -20,16 +20,15 @@ z = data[:,2]
 vx = data[:,3]
 vy = data[:,4]
 vz = data[:,5]
-m = data[:,6]
 
 # Plot the x,y,z positions of the particles in matplotlib, and plot the points in different colors based on their mass, and include a legend
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
-ax.scatter(x, y, z, c=m, marker='o')
+ax.scatter(x, y, z, color='black', s=1)
 ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
-plt.title('3D Plot of Target Galaxy')
+plt.title('3D Plot of the Initial Positions of the Particles in the Disk')
 
 # Save the figure as a .png file
 plt.savefig(output_filename)

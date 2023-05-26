@@ -12,11 +12,11 @@
 
 void leapstep(double m_nucleus, double *x_nucleus, double *y_nucleus, double *z_nucleus, double *vx_nucleus, double *vy_nucleus, double *vz_nucleus,
               double m_intruder, double *x_intruder, double *y_intruder, double *z_intruder, double *vx_intruder, double *vy_intruder, double *vz_intruder,
-              double m[], double x[], double y[], double z[], double vx[], double vy[], double vz[],
+              double x[], double y[], double z[], double vx[], double vy[], double vz[],
               int n, double dt, double soft);
 void accel(double m_nucleus, double *ax_nucleus, double *ay_nucleus, double *az_nucleus, double x_nucleus, double y_nucleus, double z_nucleus,
            double m_intruder, double *ax_intruder, double *ay_intruder, double *az_intruder, double x_intruder, double y_intruder, double z_intruder,
-           double m[], double ax[], double ay[], double az[], double x[], double y[], double z[],
+           double ax[], double ay[], double az[], double x[], double y[], double z[],
            int n, double soft);
 double distance(double x1, double y1, double z1, double x2, double y2, double z2);
 
@@ -115,14 +115,13 @@ int main(int argc, char *argv[]){
 
     printf("Number of points in disk: %d\n", n);
 
-    double m[n];
     double x[n], y[n], z[n];
     double vx[n], vy[n], vz[n];
     
     int count = 0;
-    while (fscanf(disk_file, "%lf %lf %lf %lf %lf %lf %lf",
+    while (fscanf(disk_file, "%lf %lf %lf %lf %lf %lf",
                   &x[count], &y[count], &z[count],
-                  &vx[count], &vy[count], &vz[count], &m[count]) == 7) {
+                  &vx[count], &vy[count], &vz[count]) == 6) {
         count++;
     }
 
@@ -138,7 +137,7 @@ int main(int argc, char *argv[]){
         printf("vx = %lf ", vx[i]);
         printf("vy = %lf ", vy[i]);
         printf("vz = %lf ", vz[i]);
-        printf("m = %lf\n", m[i]);
+        printf("\n");
     }
 
     fclose(disk_file);
@@ -175,7 +174,7 @@ int main(int argc, char *argv[]){
         // take integration step
         leapstep(m_nucleus, &x_nucleus, &y_nucleus, &z_nucleus, &vx_nucleus, &vy_nucleus, &vz_nucleus,
                  m_intruder, &x_intruder, &y_intruder, &z_intruder, &vx_intruder, &vy_intruder, &vz_intruder,
-                 m, x, y, z, vx, vy, vz,
+                 x, y, z, vx, vy, vz,
                  n, dt, soft);
 
         tnow += dt; // update time value
@@ -206,7 +205,7 @@ int main(int argc, char *argv[]){
 
 void leapstep(double m_nucleus, double *x_nucleus, double *y_nucleus, double *z_nucleus, double *vx_nucleus, double *vy_nucleus, double *vz_nucleus,
               double m_intruder, double *x_intruder, double *y_intruder, double *z_intruder, double *vx_intruder, double *vy_intruder, double *vz_intruder,
-              double m[], double x[], double y[], double z[], double vx[], double vy[], double vz[],
+              double x[], double y[], double z[], double vx[], double vy[], double vz[],
               int n, double dt, double soft)
 {
     // initialize accelerations
@@ -217,7 +216,7 @@ void leapstep(double m_nucleus, double *x_nucleus, double *y_nucleus, double *z_
     // kick
     accel(m_nucleus, &ax_nucleus, &ay_nucleus, &az_nucleus, *x_nucleus, *y_nucleus, *z_nucleus,
           m_intruder, &ax_intruder, &ay_intruder, &az_intruder, *x_intruder, *y_intruder, *z_intruder,
-          m, ax, ay, az, x, y, z, n, soft);
+          ax, ay, az, x, y, z, n, soft);
 
     // drift host nucleus
     *vx_nucleus = *vx_nucleus + 0.5 * dt * ax_nucleus;
@@ -246,9 +245,7 @@ void leapstep(double m_nucleus, double *x_nucleus, double *y_nucleus, double *z_
     // kick
     accel(m_nucleus, &ax_nucleus, &ay_nucleus, &az_nucleus, *x_nucleus, *y_nucleus, *z_nucleus,
           m_intruder, &ax_intruder, &ay_intruder, &az_intruder, *x_intruder, *y_intruder, *z_intruder,
-          m, ax, ay, az, x, y, z, n, soft);
-
-    
+          ax, ay, az, x, y, z, n, soft);
 
     // complete vel step
     // drift host nucleus
@@ -270,7 +267,7 @@ void leapstep(double m_nucleus, double *x_nucleus, double *y_nucleus, double *z_
 
 void accel(double m_nucleus, double *ax_nucleus, double *ay_nucleus, double *az_nucleus, double x_nucleus, double y_nucleus, double z_nucleus,
            double m_intruder, double *ax_intruder, double *ay_intruder, double *az_intruder, double x_intruder, double y_intruder, double z_intruder,
-           double m[], double ax[], double ay[], double az[], double x[], double y[], double z[],
+           double ax[], double ay[], double az[], double x[], double y[], double z[],
            int n, double soft)
 {
     // calc acceleration of host nucleus (only calculates force between it and the intruder nucleus, not the points in the disk)
