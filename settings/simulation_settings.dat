@@ -8,4 +8,4 @@ Mass X Y Z Vx Vy Vz
 0.667 0.0 0.0 10.0 0.0 0.0 -0.447
 Integration parameters
 nout dt mstep soft
-2 0.1 1200 1.3
+2 0.1 1000 3.3

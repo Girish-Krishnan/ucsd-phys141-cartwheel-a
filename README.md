@@ -6,8 +6,18 @@
 
 #### Usage
 
-* **disk.cpp** - to generate a disk of points in the target galaxy.
+**Code Files**
+
+The **/settings** directory contains the initial conditions and simulation parameters.
+
+* **disk_point_distribution.cpp** - to generate a disk of points in the target galaxy.
+* **disk_initial_conditions.cpp** - to set the initial positions and velocities of all particles in the disk and save them in a file.
 * **plotting_initial_disk.py** - to visualize the point distribution in the disk.
 *  **simulation.cpp** - to run the Cartwheel galaxy collision simulation (using Leapfrog integration)
 *  **animate.py** - to visualize the Cartwheel simulation.
 *  **midterm.ipynb** - a Jupyter notebook walking through all the steps to run the code.
+
+**Results and Outputs**
+
+* **animation.mp4** - a video showing an animation of our simulation.
+* **initial_disk.png** - an image showing the initial distribution of particles in the disk.

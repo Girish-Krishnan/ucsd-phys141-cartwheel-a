@@ -272,22 +272,22 @@ void accel(double m_nucleus, double *ax_nucleus, double *ay_nucleus, double *az_
 {
     // calc acceleration of host nucleus (only calculates force between it and the intruder nucleus, not the points in the disk)
     double r = distance(x_nucleus, y_nucleus, z_nucleus, x_intruder, y_intruder, z_intruder);
-    *ax_nucleus = -G * m_intruder * (x_nucleus - x_intruder)/pow(r + soft*soft, 3);
-    *ay_nucleus = -G * m_intruder * (y_nucleus - y_intruder)/pow(r + soft*soft, 3);
-    *az_nucleus = -G * m_intruder * (z_nucleus - z_intruder)/pow(r + soft*soft, 3);
+    *ax_nucleus = -G * m_intruder * (x_nucleus - x_intruder)/pow(r*r + soft*soft, 1.5);
+    *ay_nucleus = -G * m_intruder * (y_nucleus - y_intruder)/pow(r*r + soft*soft, 1.5);
+    *az_nucleus = -G * m_intruder * (z_nucleus - z_intruder)/pow(r*r + soft*soft, 1.5);
 
     // calc acceleration of intruder nucleus (only calculates force between it and the host nucleus, not the points in the disk)
-    *ax_intruder = -G * m_nucleus * (x_intruder - x_nucleus)/pow(r + soft*soft, 3);
-    *ay_intruder = -G * m_nucleus * (y_intruder - y_nucleus)/pow(r + soft*soft, 3);
-    *az_intruder = -G * m_nucleus * (z_intruder - z_nucleus)/pow(r + soft*soft, 3);
+    *ax_intruder = -G * m_nucleus * (x_intruder - x_nucleus)/pow(r*r + soft*soft, 1.5);
+    *ay_intruder = -G * m_nucleus * (y_intruder - y_nucleus)/pow(r*r + soft*soft, 1.5);
+    *az_intruder = -G * m_nucleus * (z_intruder - z_nucleus)/pow(r*r + soft*soft, 1.5);
 
     // calc acceleration of disk particles
     for(int i = 0; i < n; i++){
         double r_to_nucleus = distance(x[i], y[i], z[i], x_nucleus, y_nucleus, z_nucleus);
         double r_to_intruder = distance(x[i], y[i], z[i], x_intruder, y_intruder, z_intruder);
-        ax[i] = (-G * m_nucleus * (x[i] - x_nucleus)/pow(r_to_nucleus + soft*soft, 3)) + (-G * m_intruder * (x[i] - x_intruder)/pow(r_to_intruder + soft*soft, 3));
-        ay[i] = (-G * m_nucleus * (y[i] - y_nucleus)/pow(r_to_nucleus + soft*soft, 3)) + (-G * m_intruder * (y[i] - y_intruder)/pow(r_to_intruder + soft*soft, 3));
-        az[i] = (-G * m_nucleus * (z[i] - z_nucleus)/pow(r_to_nucleus + soft*soft, 3)) + (-G * m_intruder * (z[i] - z_intruder)/pow(r_to_intruder + soft*soft, 3));
+        ax[i] = (-G * m_nucleus * (x[i] - x_nucleus)/pow(r_to_nucleus*r_to_nucleus + soft*soft, 1.5)) + (-G * m_intruder * (x[i] - x_intruder)/pow(r_to_intruder*r_to_intruder + soft*soft, 1.5));
+        ay[i] = (-G * m_nucleus * (y[i] - y_nucleus)/pow(r_to_nucleus*r_to_nucleus + soft*soft, 1.5)) + (-G * m_intruder * (y[i] - y_intruder)/pow(r_to_intruder*r_to_intruder + soft*soft, 1.5));
+        az[i] = (-G * m_nucleus * (z[i] - z_nucleus)/pow(r_to_nucleus*r_to_nucleus + soft*soft, 1.5)) + (-G * m_intruder * (z[i] - z_intruder)/pow(r_to_intruder*r_to_intruder + soft*soft, 1.5));
     }
 }
 
