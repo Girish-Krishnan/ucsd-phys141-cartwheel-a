@@ -61,7 +61,7 @@ def update(frame):
 # Create the figure and 3D axes
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
-ax.view_init(elev=0, azim=90)  # Set elevation and azimuth angles
+#ax.view_init(elev=0, azim=90)  # Set elevation and azimuth angles
 
 # Create the animation
 animation = FuncAnimation(fig, update, frames=len(x[0]), interval=50)

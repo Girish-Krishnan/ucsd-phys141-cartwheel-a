@@ -6,3 +6,4 @@ simulation
 disk_initial_conditions
 disk_point_distribution
 /animation_frames
+*.out
